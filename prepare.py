@@ -1,3 +1,8 @@
+import numpy as np
+import pandas as pd
+import os
+from env import host, user, password
+
 def prep_data(df):
     '''
     This function takes in the telco data frame and prepares it for analysis by:
@@ -14,10 +19,10 @@ def prep_data(df):
     cols_to_encode = ['gender', 'contract_type', 'payment_type']
 
     #Encode
-    dummies = pd.get_dummies(telco[cols_to_encode], drop_first=[True])
+    dummies = pd.get_dummies(df[cols_to_encode], drop_first=[True])
 
     #Concat dummies to original df
-    df = pd.concat([telco, dummies], axis=1)
+    df = pd.concat([df, dummies], axis=1)
 
     #Columns to drop
     cols_to_drop = ['internet_service_type_id', 'contract_type_id', 'payment_type_id', 

@@ -16,7 +16,7 @@ def prep_data(df):
     df.replace({'Yes': 1, 'No': 0}, inplace=True)
 
     #Columns to encode
-    cols_to_encode = ['gender', 'contract_type', 'payment_type']
+    cols_to_encode = ['gender', 'contract_type', 'payment_type', 'internet_service_type']
 
     #Encode
     dummies = pd.get_dummies(df[cols_to_encode], drop_first=[True])
@@ -26,7 +26,7 @@ def prep_data(df):
 
     #Columns to drop
     cols_to_drop = ['internet_service_type_id', 'contract_type_id', 'payment_type_id', 
-    'gender','internet_service_type', 'contract_type', 'payment_type', 'customer_id']
+    'gender','internet_service_type', 'contract_type', 'payment_type', 'customer_id', 'Unnamed: 0']
 
     #drop columns
     df.drop(columns=cols_to_drop, inplace=True)
@@ -36,5 +36,8 @@ def prep_data(df):
 
     #Convert total_charges to float
     df.total_charges = df.total_charges.astype('float64')
+
+    #Replace 0s in total charges with monthly charge
+    df.total_charges = np.where(df.total_charges==0.0, df.monthly_charges , df.total_charges)
 
     return df

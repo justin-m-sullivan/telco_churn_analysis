@@ -13,16 +13,10 @@ def get_connection(db, user=user, host=host, password=password):
 
 def get_telco_data():
     '''
-    This function reads in telco data from Codeup database and writes data to
-    a csv file, returns df.
+    This function reads in telco data from Codeup database
     '''
-    filename = 'telco.csv'
-    if os.path.isfile(filename):
-        return pd.read_csv(filename)
 
-    else:
-        #Read fresh data from db into a DataFrame.
-        df = pd.read_sql('''
+    df = pd.read_sql('''
             SELECT *
             FROM customers
             JOIN internet_service_types USING (internet_service_type_id)
@@ -30,8 +24,5 @@ def get_telco_data():
             JOIN payment_types USING (payment_type_id);
             ''', 
             get_connection('telco_churn'))
-        
-        #Write DataFrame to a csv file.
-        df.to_csv(filename)
           
     return df

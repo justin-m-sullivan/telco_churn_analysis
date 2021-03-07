@@ -26,7 +26,7 @@ def prep_data(df):
 
     #Columns to drop
     cols_to_drop = ['internet_service_type_id', 'contract_type_id', 'payment_type_id', 
-    'gender','internet_service_type', 'contract_type', 'payment_type', 'customer_id', 'Unnamed: 0']
+    'gender','internet_service_type', 'contract_type', 'payment_type', 'customer_id']
 
     #drop columns
     df.drop(columns=cols_to_drop, inplace=True)

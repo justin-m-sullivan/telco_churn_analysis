@@ -23,10 +23,11 @@ def get_telco_data():
     else:
         #Read fresh data from db into a DataFrame.
         df = pd.read_sql('''
-            SELECT * FROM customers
-            JOIN internet_service_types ON(customers.internet_service_type_id)
-            JOIN contract_types ON(customers.contract_type_id)
-            JOIN payment_types ON(customers.payment_type_id);
+            SELECT *
+            FROM customers
+            JOIN internet_service_types USING (internet_service_type_id)
+            JOIN contract_types USING(contract_type_id)
+            JOIN payment_types USING (payment_type_id);
             ''', 
             get_connection('telco_churn'))
         

@@ -15,8 +15,15 @@ def prep_data(df):
     #Convert features with yes or no to 0s and 1s
     df.replace({'Yes': 1, 'No': 0}, inplace=True)
 
+    #Group payment_type_id in two subgroups(auto pay vs manual pay) with booleans (True = auto_pay)
+    df.payment_type_id.replace({1: 0, 2: 0, 3: 1, 4: 1}, inplace=True)
+
+    #Rename payment_type_id columns to auto_bill_pay 
+    df.rename(columns={'payment_type_id': 'auto_bill_pay'}, inplace=True)
+
+    
     #Columns to encode
-    cols_to_encode = ['gender', 'contract_type', 'payment_type', 'internet_service_type']
+    cols_to_encode = ['gender', 'contract_type', 'internet_service_type']
 
     #Encode
     dummies = pd.get_dummies(df[cols_to_encode], drop_first=[True])
@@ -25,7 +32,7 @@ def prep_data(df):
     df = pd.concat([df, dummies], axis=1)
 
     #Columns to drop
-    cols_to_drop = ['internet_service_type_id', 'contract_type_id', 'payment_type_id', 
+    cols_to_drop = ['internet_service_type_id', 'contract_type_id', 
     'gender','internet_service_type', 'contract_type', 'payment_type', 'customer_id']
 
     #drop columns

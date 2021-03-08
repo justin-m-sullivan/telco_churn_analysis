@@ -23,7 +23,7 @@ def prep_data(df):
 
     
     #Columns to encode
-    cols_to_encode = ['gender', 'contract_type', 'internet_service_type']
+    cols_to_encode = ['gender']
 
     #Encode
     dummies = pd.get_dummies(df[cols_to_encode], drop_first=[True])

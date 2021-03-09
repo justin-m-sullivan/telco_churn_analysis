@@ -13,7 +13,9 @@ def get_connection(db, user=user, host=host, password=password):
 
 def get_telco_data():
     '''
-    This function reads in telco data from Codeup database
+    This function reads in telco data from Codeup database.
+    It joins the tables internet_service_types, contract_types,
+    and payment types on customers table to return a single dataframe
     '''
 
     df = pd.read_sql('''

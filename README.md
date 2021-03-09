@@ -1,9 +1,10 @@
-# telco_churn_analysis
-My project repo for working through the data science pipeline with the Telco Customer Churn dataset 
+# Telco Customer Churn Analysis
+My project repo for working through the data science pipeline with the Telco Customer Churn dataset.
+Included in this repo is the Telco_Churn_Analysis_Report.ipynb which documents my process and analysis. 
 
 
 ## Project Description
-This project seeks to answer the question: What drives customer churn at Telco?
+**What drives customer churn at Telco?**
 
 By working through every stage of the data science pipeline (data acquistion, preparation, exploratory data analysis and statistical testing, modeling, and delivery), the project goal is to determine drivers of churn, develop a model for predicting customer churn, and deliver reccomendations and analysis.
 
@@ -70,7 +71,7 @@ auto_bill_pay | indicates if the customer is enrolled in auto bill pay or not | 
     - KNN
     - Baseline Accuracy
     
-### Modules
+### Modules Included in Repo
 - acquire.py
 - prepare.py
 - explore.py

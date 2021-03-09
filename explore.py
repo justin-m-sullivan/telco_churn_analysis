@@ -61,7 +61,7 @@ def explore_univariate_categorical(train, cat_var):
     '''
     frequency_table = freq_table(train, cat_var)
     plt.figure(figsize=(2,2))
-    sns.barplot(x=cat_var, y='Count', data=frequency_table, color='lightseagreen')
+    sns.barplot(x=cat_var, y='Count', data=frequency_table, color='white', edgecolor='grey')
     plt.title(cat_var)
     plt.show()
     print(frequency_table)
@@ -75,7 +75,7 @@ def explore_univariate_quant(train, quant_var):
     plt.figure(figsize=(8,2))
 
     p = plt.subplot(1, 2, 1)
-    p = plt.hist(train[quant_var], color='lightseagreen')
+    p = plt.hist(train[quant_var], color='white', edgecolor='grey')
     p = plt.title(quant_var)
 
     # second plot: box plot
@@ -189,7 +189,7 @@ def plot_all_continuous_vars(train, target, quant_vars):
     boxenplot of measurement x value with color representing survived. 
     '''
     my_vars = [item for sublist in [quant_vars, [target]] for item in sublist]
-    sns.set(style="whitegrid", palette="muted")
+    sns.set(style="whitegrid", palette="twilight_shifted")
     melt = train[my_vars].melt(id_vars=target, var_name="measurement")
     plt.figure(figsize=(8,6))
     p = sns.boxenplot(x="measurement", y="value", hue=target, data=melt)
@@ -202,7 +202,7 @@ def plot_violin_grid_with_color(train, target, cat_vars, quant_vars):
         _, ax = plt.subplots(nrows=1, ncols=cols, figsize=(16, 4), sharey=True)
         for i, cat in enumerate(cat_vars):
             sns.violinplot(x=cat, y=quant, data=train, split=True, 
-                           ax=ax[i], hue=target, palette="Set2")
+                           ax=ax[i], hue=target, palette="twilight_shifted")
             ax[i].set_xlabel('')
             ax[i].set_ylabel(quant)
             ax[i].set_title(cat)
@@ -213,7 +213,7 @@ def plot_swarm_grid_with_color(train, target, cat_vars, quant_vars):
     for quant in quant_vars:
         _, ax = plt.subplots(nrows=1, ncols=cols, figsize=(16, 4), sharey=True)
         for i, cat in enumerate(cat_vars):
-            sns.swarmplot(x=cat, y=quant, data=train, ax=ax[i], hue=target, palette="Set2")
+            sns.swarmplot(x=cat, y=quant, data=train, ax=ax[i], hue=target, palette="twilight_shifted")
             ax[i].set_xlabel('')
             ax[i].set_ylabel(quant)
             ax[i].set_title(cat)
